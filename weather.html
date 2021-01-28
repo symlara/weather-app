@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather-App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<!-- nav section -->
+<body>
+    <nav class="navbar navbar-dark bg-dark justify-content-center"> 
+          <h1 class="nav">Weather Dashboard</h1>
+    </nav> 
+    <!-- nav section end -->
+    <!-- display section for search area -->
+    <section class="search-form">
+    <form class="search">
+        <h5>Search For a City:</h5>
+        <input type="text" name="search">
+        <button type="submit"><i class="fa fa-search"></i></button>
+      </form>
+      </section>
+      
+      <section class="locations-section">
+          <div class="container">
+              <ul class="cities">
+                  <li class="city">
+                      <h3 class="city-names" data-name="...">
+                          <span>...</span>
+                          <sup>...</sup>
+                      </h3>
+                      <span class="city-temp">...<sup>°F</sup></span>
+                      <span class="city-humidity">...<sup></sup></span>
+                      <span class="city-wind-speed">...<sup></sup></span>
+                      <span class="city-UV-index">...<sup></sup></span>
+
+
+                      <figure>
+                          <img class="weather-icon" src="..." alt="...">
+                      </figure>
+                  </li>
+              </ul>
+          </div>
+      </section>
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
