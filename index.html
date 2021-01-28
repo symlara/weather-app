@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather-App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/style.css" />
+</head>
+<!-- nav section -->
+<body>
+    <nav class="navbar navbar-dark bg-dark justify-content-center"> 
+          <h1 id="nav">Weather Dashboard</h1>
+    </nav> 
+    <!-- nav section end -->
+
+    <!-- display column for the search and list of cities-->
+<main class="flex-row justify-space-between">
+      <div class="col-12 col-md-8">
+        <form class="form-inline">
+            <div class="form-group">
+              <label for="city">Search For a City:</label>
+              <input type="text" id="citySearch" class="form-control mx-sm-3">
+            </div>
+          </form>
+        <div id="repos-container" class="list-group"></div>
+      </div>
+
+      <!-- display column for each city and its data -->
+      <div class="col-12 col-md-4">
+        <div id="weather-container" class="list-cities"></div>
+      </div>
+</main>
+
+
+    <script src="assets/js/script.js"></script>
+</body>
+</html>
