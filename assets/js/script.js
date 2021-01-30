@@ -1,14 +1,24 @@
-const form = document.querySelector(".search-form form");
+const button = document.querySelector(".search-form button");
 const input = document.querySelector("search-form input");
 const msg = document.querySelector(".search-form .msg");
 const list = document.querySelector("locations-section cities");
 
 // api key goes here
 const apiKey = "d69bf099c1a64c27c56575e55d93e3ef";
+
  
-form.addEventListener("submit", e => {
+button.addEventListener("submit", e => {
+    let inputVal = input.value;
   e.preventDefault();
-  let inputVal = input.value;
+  const url = "api.openweathermap.org/data/2.5/weather?q={nashville}&appid={API key}";
+  fetch(url) 
+.then(response => response.json())
+.then(data => {
+    const { main, name, sys , weather } = data;
+    const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${
+        weather[0]["icon"]
+      }.svg`;
+ 
 
 const listItems = list.querySelectorAll(".locations-section .city");
 const listItemArray = Array.from(listItems);
@@ -28,15 +38,9 @@ if(listItemArray.length > 0) {
     });
 }
 
-const url = `https://api.openweathermap.org/data/2.5/weather?q=${inputVal}&appid=${apiKey}&units=metric`;
 
-fetch(Apiurl) 
-.then(response => response.json())
-.then(data => {
-    const { main, name, sys , weather } = data;
-    const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${
-        weather[0]["icon"]
-      }.svg`;
+
+
 
       const li = document.createElement("li");
       li.classList.add("city");
