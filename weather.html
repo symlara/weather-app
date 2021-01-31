@@ -15,40 +15,22 @@
     </nav> 
     <!-- nav section end -->
     <!-- display section for search area -->
-    <section class="search-form">
+    <section class="flex-row justify-space-between search-form">
     <form class="search">
         <h5>Search For a City:</h5>
-        <input type="text" name="search">
+        <input id="input" type="text" name="search">
         <button id="submit" type="submit"><i class="fa fa-search"></i></button>
         <span class="msg"></span>
       </form>
       </section>
 
-      <section>
-
-      </section>
-      
-      <section class="locations-section">
+      <section class="ajax-container">
           <div class="container">
-              <ul class="cities">
-                  <li class="city">
-                      <h3 class="city-names" data-name="...">
-                          <span>...</span>
-                          <sup>...</sup>
-                      </h3>
-                      <span class="city-temp">...<sup>°F</sup></span>
-                      <span class="city-humidity">...<sup></sup></span>
-                      <span class="city-wind-speed">...<sup></sup></span>
-                      <span class="city-humidity">...<sup></sup></span>
-
-
-                      <figure>
-                          <img class="weather-icon" src="..." alt="...">
-                      </figure>
-                  </li>
-              </ul>
+              <ul class="cities"></ul>
           </div>
       </section>
+   
+   
 
     <script src="assets/js/script.js"></script>
 </body>

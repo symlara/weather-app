@@ -1,72 +1,43 @@
-const button = document.querySelector(".search-form button");
-const input = document.querySelector("search-form input");
-const msg = document.querySelector(".search-form .msg");
-const list = document.querySelector("locations-section cities");
 
-// api key goes here
-const apiKey = "d69bf099c1a64c27c56575e55d93e3ef";
+// variables for the button and input elements
+var buttonEl = document.querySelector(".search-form button");
+var inputValEl = document.querySelector(".search-form input");
+var citysearchItemEl = document.querySelector("cityItemsContainer");
+
 
  
-button.addEventListener("submit", e => {
+buttonEl.addEventListener("submit", e => {
     let inputVal = input.value;
-  e.preventDefault();
-  const url = "api.openweathermap.org/data/2.5/weather?q={nashville}&appid={API key}";
-  fetch(url) 
-.then(response => response.json())
-.then(data => {
-    const { main, name, sys , weather } = data;
-    const icon = `https://s3-us-west-2.amazonaws.com/s.cdpn.io/162656/${
+    e.preventDefault();
+    searchForecast(inpurVal)
+    renderList(inputVal)
+});
+
+
+var searchForecast = function() {   
+    var apiUrl = "api.openweathermap.org/data/2.5/weather?q=Nashville&appid=d69bf099c1a64c27c56575e55d93e3ef";
+
+    fetch(apiUrl).then(function(response) {
+
+        if(response.ok) {
+            response.json().then(function(data) {
+                const {main, name, sys, weather } = data;
+                const icon = `https://openweathermap.org/img/wn/${
         weather[0]["icon"]
-      }.svg`;
- 
-
-const listItems = list.querySelectorAll(".locations-section .city");
-const listItemArray = Array.from(listItems);
-
-if(listItemArray.length > 0) {
-    const filteredArray = listItemArray.filter(el => {
-        let content = "";
-
-        if(inputVal.split(",")[1].legnth > 2) {
-            inputVal = inputVal.split(",")[0];
-            content = el
-            .querySelector(".city-names span")
-            .textContent.toUpperCase();
-        }else {
-            content = el.querySelector(".city-names").dataset.name.toUpperCase();
+      }@2x.png`;
+                displayCities(data.items);
+                console.log(data);
+            });
         }
+    })
+    .catch(function(error) {
+        alert("Unable to connect.");
     });
-}
+};
 
-
-
-
-
-      const li = document.createElement("li");
-      li.classList.add("city");
-      const markup = `
-      <h3 class="city-names data-name="${name},${sys.country}">
-      <span>${name}</span>
-      <sup>${sys.country}</sup>
-      </h3>
-      <div class="city-temp">${Math.round(main.temp)}<sup>°F</sup></div>
-      <figure>
-      <img class="city-icon" src="${icon}" alt="${
-          weather[0]["description"]
-      }">
-      `;
-      li.innerHTML = markup;
-      list.appendChild(li);
-})
-.catch(() => {
-    msg.textContent = "Please search for a city";
-});
-
-msg.textContent = "";
-form.reset();
-input.focus();
-
-});
-
-
-
+const li = document.createElement("li");
+li.classList.add("city");
+const markup = <h2 class="city-names" data-name="${name},${sys.country}">
+<span>${name}</span>
+<sup>${sys.country}</sup>
+</h2>
