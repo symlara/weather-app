@@ -1,43 +1,54 @@
 
 // variables for the button and input elements
 var buttonEl = document.querySelector(".search-form button");
-var inputValEl = document.querySelector(".search-form input");
-var citysearchItemEl = document.querySelector("cityItemsContainer");
+var inputVal = document.querySelector(".search-form input");
+var msg = document.querySelector(".search-form msg");
 
-
- 
+const apiKey = "d69bf099c1a64c27c56575e55d93e3ef";
+  
 buttonEl.addEventListener("submit", e => {
-    let inputVal = input.value;
     e.preventDefault();
-    searchForecast(inpurVal)
-    renderList(inputVal)
+    const listItems = list.querySelectorAll(".ajax-container .cities");
+    const inputVal = input.value;
 });
 
+    //ajax
+    const apiUrl = "api.openweathermap.org/data/2.5/weather?q=Nashville&appid=d69bf099c1a64c27c56575e55d93e3ef";
 
-var searchForecast = function() {   
-    var apiUrl = "api.openweathermap.org/data/2.5/weather?q=Nashville&appid=d69bf099c1a64c27c56575e55d93e3ef";
+  
 
-    fetch(apiUrl).then(function(response) {
+   fetch(apiUrl).then(response => {
+       response.json()
+       .then(data => {
+           const { main, name, sys, weather } = data;
+           const icon = "http://openweathermap.org/img/wn/10d@2x.png";
 
-        if(response.ok) {
-            response.json().then(function(data) {
-                const {main, name, sys, weather } = data;
-                const icon = `https://openweathermap.org/img/wn/${
-        weather[0]["icon"]
-      }@2x.png`;
-                displayCities(data.items);
-                console.log(data);
-            });
-        }
-    })
-    .catch(function(error) {
-        alert("Unable to connect.");
-    });
-};
+           const li = document.createElement("li");
 
-const li = document.createElement("li");
-li.classList.add("city");
-const markup = <h2 class="city-names" data-name="${name},${sys.country}">
-<span>${name}</span>
-<sup>${sys.country}</sup>
-</h2>
+           li.classList.add("city");
+           const markup = `
+           <h2 class="city-name" data-name="${name},${sys.country}">
+             <span>${name}</span>
+             <sup>${sys.country}</sup>
+           </h2>
+           <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
+           <figure>
+             <img class="city-icon" src=${icon} alt=${weather[0]["main"]}>
+           </figure>`;
+
+           li.innerHTML = markup;
+           list.appendChild(li);
+       })
+       .catch((error) => {
+                alert("Unable to find city info");
+              });
+   });
+     
+
+
+
+
+
+
+
+
