@@ -43,5 +43,29 @@ let displayWeather = function(weatherData) {
   $("#city-temp").text("Temperature: " + weatherData.main.temp.toFixed(1) + "°F");
   $("#city-humidity").text("Humidity: " + weatherData.main.humidity + "%");
   $("#city-wind").text("Wind Speed: " + weatherData.wind.speed.toFixed(1) + "mph");
+
+  fetch("https://api.openweathermap.org/data/2.5/uvi?lat=" + weatherData.coord.lat + "&lon="+ weatherData.coord.lon + "&appid=d69bf099c1a64c27c56575e55d93e3ef")
+  .then(function(response) {
+    response.json().then(function(data) {
+
+      // uv index values
+      $("#uv-data").text(data.value);
+
+      if(data.value >= 11) {
+        $("#uv-data").css("background-color", "#220473")
+      }else if (data.value < 11 && data.value >= 8) {
+        $("#uv-data").css("background-color", "#5f40b4")
+      }else if (data.value < 8 && data.value >= 6) {
+        $("#uv-data").css("background-color", "#f95901")
+      }else if (data.value < 6 && data.value >= 3) {
+      $("#uv-data").css("background-color", "#63597f")
+      }else {
+        $("#uv-data").css("background-color", "#2d3393")
+      }
+
+    })
+
+  });
+  
 }
 
