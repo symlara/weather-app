@@ -89,6 +89,63 @@ let displayWeather = function(weatherData) {
         $("#five-days").append(fiveDayCard);
       }
     })
-  })
+  });
+
+  // save last city searched
+  lastCitySearched = weatherData.name;
+
+  saveSearchHistory(weatherData.name);
+
+};
+
+//function that saves city search history to localStorage
+let saveSearchHistory = function(city) {
+  if(!searchHistory.includes(city)) {
+    searchHistory.push(city);
+    $("#search-history").append("<a href='#' class='list-group-item list-group-item-action' id='" + city + "'>" + city + "</a>")
+  }
+// saving array to localStorage
+  localStorage.setItem("weatherSearchHistory", JSON.stringify(searchHistory));
+
+  localStorage.setItem("lastCitySearched", JSON.stringify(lastCitySearched));
+
+  loadSearchHistory();
+};
+
+let loadSearchHistory = function() {
+  searchHistory = JSON.parse(localStorage.getItem("weatherSearchHistory"));
+  lastCitySearched = JSON.parse(localStorage.getItem("lastCitySearched"));
+
+  // if nothing in localStorage, create an empty searchHistory array and an empty lastCitySearched string
+  if (!searchHistory) {
+      searchHistory = []
+  }
+
+  if (!lastCitySearched) {
+      lastCitySearched = ""
+  }
+
+  // clear any previous values from th search-history ul
+  $("#search-history").empty();
+
+  // for loop that will run through all the citys found in the array
+  for(i = 0 ; i < searchHistory.length ;i++) {
+
+      // add the city as a link, set it's id, and append it to the search-history ul
+      $("#search-history").append("<a href='#' class='list-group-item list-group-item-action' id='" + searchHistory[i] + "'>" + searchHistory[i] + "</a>");
+  }
+};
+
+// loads search history from localStorage
+loadSearchHistory();
+
+if(lastCitySearched != "") {
+  getCityWeather(lastCitySearched);
 }
 
+$("#search-form").submit(searchSubmitHandler);
+$("#search-history").on("click", function(e){
+  let prevCity = $(e.target).closest("a").attr("id");
+
+  getCityWeather(prevCity);
+});

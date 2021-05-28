@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather-App</title>
+    <title>Weather App</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.3/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
-<!-- nav section -->
+<!-- header section -->
 <body>
-    <nav class="navbar navbar-dark bg-dark justify-content-center"> 
-          <h1 class="nav">Weather Dashboard</h1>
-    </nav> 
-    <!-- nav section end -->
+    <header class="navbar navbar-dark bg-dark justify-content-center"> 
+          <h1 class="p-2 text-light text-center h1">Weather Dashboard</h1>
+    </header> 
+    <!-- header section end -->
 
     <!-- display section for search area -->
-    <div class="row justify-space-between search-form">
-        <div class="col-sm-6">
+    <div class="col-sm-6">
+    <div class="row justify-space-between" id="search-form">
             <h5>Search For a City:</h5>
     <form class="search">
         <input id="input" type="search" name="search" placeholder="Enter city name here">
@@ -27,7 +28,7 @@
 
         <ul id="search-history">
         </ul>
-
+</div>
       </div>
 
 <!-- results -->

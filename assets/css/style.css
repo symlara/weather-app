@@ -1,8 +1,5 @@
+/* 
 
-
-.navbar h1 {
-    color: white;
-}
 
 form.search button {
     background: #2196F3;
@@ -43,6 +40,7 @@ ul {
 
 /* Custom here */
 
+/*
 .locations-section .city {
     position: relative;
     padding: 20px 10%;
@@ -124,4 +122,4 @@ ul {
     .locations-section .cities {
         grid-template-columns: repeat(1, 1fr);
     }
-}
+} */
