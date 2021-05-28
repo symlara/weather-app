@@ -5,6 +5,7 @@
 
 ## Description
 <a href="https://symlara.github.io/weather-app/" target="_blank">Weather App</a>
+<br>
 This is a weather app that is utilizing API calls from OpenWeather API to display the weather in any city you want to search for. This was created for learning purposes.
 
 ## Usage💻
