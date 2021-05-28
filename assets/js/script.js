@@ -66,6 +66,29 @@ let displayWeather = function(weatherData) {
     })
 
   });
-  
+
+  fetch("https://api.openweathermap.org/data/2.5/forecast?q=" + weatherData.name + "&appid=d69bf099c1a64c27c56575e55d93e3ef&units=imperial")
+  .then(function(response) {
+    response.json().then(function(data) {
+
+      $("#five-days").empty();
+
+      for (i = 7; i <= data.list.length; i += 8){
+
+        let fiveDayCard= `
+        <div>
+          <div class="card-body">
+            <h4 class="card-title">` + dayjs(data.list[i].dt * 1000).format("MM/DD/YYYY") + `</h4>
+            <img src="https://openweathermap.org/img/wn/` + data.list[i].weather[0].icon + `.png" alt="rain">
+            <p class="card-text">Temp: `+ data.list[i].main.temp + `</p>
+            <p class="card-text">Humidity: ` + data.list[i].main.humidity + `</p>
+          </div>
+        </div>
+        `;
+
+        $("#five-days").append(fiveDayCard);
+      }
+    })
+  })
 }
 
