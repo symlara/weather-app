@@ -52,11 +52,11 @@ let displayWeather = function(weatherData) {
       $("#uv-data").text(data.value);
 
       if(data.value >= 11) {
-        $("#uv-data").css("background-color", "#220473")
+        $("#uv-data").css("background-color", "#bb301d")
       }else if (data.value < 11 && data.value >= 8) {
-        $("#uv-data").css("background-color", "#5f40b4")
-      }else if (data.value < 8 && data.value >= 6) {
         $("#uv-data").css("background-color", "#f95901")
+      }else if (data.value < 8 && data.value >= 6) {
+        $("#uv-data").css("background-color", "#9c3f0c")
       }else if (data.value < 6 && data.value >= 3) {
       $("#uv-data").css("background-color", "#63597f")
       }else {
